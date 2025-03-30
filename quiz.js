@@ -226,12 +226,12 @@ function endQuiz() {
   
     localStorage.setItem("quizPerformance", JSON.stringify(quizData));
   
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxyLP9GCmcrdJDFxzN4NHOMzVXRqJ4N-5fPCwxeAKTubYblVtFaFb5ssM4rYlBHsrwH/exec";
-    fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(quizData)
-    })
+    fetch("https://script.google.com/macros/s/AKfycbxyLP9GCmcrdJDFxzN4NHOMzVXRqJ4N-5fPCwxeAKTubYblVtFaFb5ssM4rYlBHsrwH/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(quizData),
+        mode: "cors" // Explicitly enable CORS mode
+      })
       .then(response => response.json())
       .then(data => console.log("Server response:", data))
       .catch(error => console.error("Error:", error));
